@@ -73,6 +73,12 @@ class MyUuid
     return $this;
   }
 
+  public function index($type = 'index')
+  {
+    return $this
+      ->addIndex($type);
+  }
+
   public function addTrigger($column = null)
   {
     $currentColumn = end($this->columns);
@@ -112,11 +118,26 @@ class MyUuid
       ->addColumn($column, 'varchar', 36, $target);
   }
 
+  public function withFriendly($column)
+  {
+    $currentColumn = end($this->columns);
+    $target = $currentColumn->name;
+
+    return $this
+      ->addFriendlyUuid($column, $target);
+  }
+
   public function addIndexedUuid($column)
   {
     return $this
       ->addColumn($column)
       ->addIndex();
+  }
+
+  public function addForeignUuid($column)
+  {
+    return $this
+      ->addIndexedUuid($column);
   }
 
 
