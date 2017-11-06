@@ -1,0 +1,29 @@
+{
+  "name": "noolan/my-uuid",
+  "description": "Easily use UUIDs as primary keys",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Nolan Neustaeter",
+      "email": "nolan@neustaeter.ca"
+    }
+  ],
+  "version": "0.1.0",
+  "minimum-stability": "dev",
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "Noolan\\MyUuid\\": "src"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Noolan\\MyUuid\\MyUuidServiceProvider"
+      ],
+      "aliases": {
+        "MyUuid": "Noolan\\MyUuid\\UuidFacade"
+      }
+    }
+  }
+}
