@@ -28,8 +28,7 @@ class MySQLVersion extends Command
   public function handle()
   {
     $connectionName = $this->argument('connection') ?? config('myuuid.connection', '');
-    $myuuid = MyUuid::on('', $connectionName);
-    //dd($myuuid);
+
     $this->info(MyUuid::on('', $connectionName)->getVersion());
   }
 }

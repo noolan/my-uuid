@@ -13,7 +13,7 @@ class MyUuid
 
   protected $legacy;
   protected $table;
-  public $connection;
+  protected $connection;
   protected $columns;
   protected $indexes;
   protected $triggers;
@@ -208,9 +208,9 @@ class MyUuid
 
 
   function getVersion() {
-    // $pdo = $this->connection->getPdo();
-    // $result = $pdo->query('SELECT version()')->fetchColumn();
-    return DB::unprepared("SELECT version()");
+    $pdo = $this->connection->getPdo();
+    $result = $pdo->query('SELECT version()')->fetchColumn();
+
     preg_match("/^[0-9\.]+/", $result, $version);
 
     return $version[0];
