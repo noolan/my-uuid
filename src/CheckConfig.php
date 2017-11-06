@@ -27,12 +27,12 @@ class CheckConfig extends Command
   */
   public function handle()
   {
-    $connectionName = $this->argument('connection') ?? config('myuuid.connection', '');
+    $connectionName = config('myuuid.connection', '');
 
     $version = MyUuid::on($connectionName)->getVersion();
     $legacy = version_compare($version, '8.0.0', '<');
     $configLegacy = !config('myuuid.mysql_8', true);
-    // 0 <= 0
+
     $this->line($version . ' detected');
     $this->line('MySQL 8 mode ' . ($configLegacy ? 'disabled' : 'enabled'));
 
