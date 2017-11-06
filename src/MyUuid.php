@@ -54,7 +54,8 @@ class MyUuid
     $type = $type ?? (is_null($virtualTarget) ? 'binary' : 'varchar');
     $length = $length ?? (is_null($virtualTarget) ? 16 : 36);
 
-    $this->columns[] = (object) compact($name, $type, $length, $virtualTarget);
+    $this->columns[] = (object) compact('name', 'type', 'length', 'virtualTarget');
+    dd($this->columns);
     return $this;
   }
 
@@ -67,7 +68,7 @@ class MyUuid
 
     // no indexes on virtual columns
     if ($column !== $currentColumn->name || is_null($currentColumn->virtualTarget)) {
-      $this->indexes[] = (object) compact($column, $name, $type, $length);
+      $this->indexes[] = (object) compact('column', 'name', 'type', 'length');
     }
 
     return $this;
