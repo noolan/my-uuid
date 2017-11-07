@@ -30,7 +30,8 @@ class CheckConfig extends Command
     $connectionName = config('myuuid.connection', '');
     $myUuid = MyUuid::on($connectionName);
 
-    $this->info("\nMySQL Version Check\n===================\n");
+    $this->info("\nMySQL Version Check");
+    $this->line("===================\n");
 
     $version = $myUuid->getVersion();
     $legacy = version_compare($version, '8.0.0', '<');
@@ -47,10 +48,11 @@ class CheckConfig extends Command
       $this->error('Config is not correct. "mysql_8" needs to be false for this connection.');
     }
 
-    $this->info("\nMySQL Trigger Creation\n======================\n");
+    $this->info("\nMySQL Trigger Creation");
+    $this->line("======================\n");
 
     $canCreateTriggers = $myUuid->getTrustFunctionCreators();
-
+    $this->line('log_bin_trust_function_creators=' . ($canCreateTriggers ? '1' : '0') . "\n");
     if ($canCreateTriggers) {
       $this->info('Triggers can be created!');
     } else {
@@ -58,6 +60,7 @@ class CheckConfig extends Command
       $this->line('log_bin_trust_function_creators is set to 0 (off) which prevents non-deterministic triggers, functions and procedures from being created.');
       $this->line('See https://dev.mysql.com/doc/refman/5.7/en/stored-programs-logging.html for more information.');
     }
+    $this->info("\n");
 
   }
 }
