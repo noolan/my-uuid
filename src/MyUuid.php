@@ -55,7 +55,7 @@ class MyUuid
     $length = $length ?? (is_null($virtualTarget) ? 16 : 36);
 
     $this->columns[] = (object) compact('name', 'type', 'length', 'virtualTarget');
-    dd($this->columns);
+
     return $this;
   }
 
@@ -179,6 +179,10 @@ class MyUuid
   {
     $queries = [];
 
+    if (!$this->toBinPreCached) {
+      $this->cacheConversionFunctionStrings();
+    }
+
     // add columns
     foreach($this->columns as $column) {
       $sql = "ALTER TABLE `{$this->table}` ADD `{$column->name}` ";
@@ -208,7 +212,7 @@ class MyUuid
     foreach($this->triggers->added as $trigger) {
       $queries[] = "CREATE TRIGGER `{$this->table}_{$trigger}_auto_uuid` " .
       "BEFORE INSERT ON `{$this->table}` FOR EACH ROW " .
-      "SET new.`{$trigger}` = {$toBinPre}UUID(){$toBinPost};";
+      "SET new.`{$trigger}` = {$this->toBinPreCached}UUID(){$this->toBinPostCached};";
     }
     $this->triggers->added = [];
 
@@ -236,6 +240,13 @@ class MyUuid
     preg_match("/^[0-9\.]+/", $result, $version);
 
     return $version[0];
+  }
+
+  function getTrustFunctionCreators() {
+    $pdo = $this->connection->getPdo();
+    $result = $pdo->query('SELECT @@log_bin_trust_function_creators')->fetchColumn();
+
+    return (boolean) $result;
   }
 
 }

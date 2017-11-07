@@ -8,7 +8,7 @@
       "email": "nolan@neustaeter.ca"
     }
   ],
-  "version": "0.1.4",
+  "version": "0.1.5",
   "minimum-stability": "dev",
   "require": {},
   "autoload": {
