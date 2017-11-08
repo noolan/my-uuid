@@ -159,7 +159,7 @@ class MyUuid
     $this->toUuidPostCached = $toUuidFn[1];
   }
 
-  public function getToBinFnString($column)
+  private function getToBinFnString($column)
   {
     if (!$this->toBinPreCached) {
       $this->cacheConversionFunctionStrings();
@@ -167,7 +167,7 @@ class MyUuid
     return $this->toBinPreCached . $column . $this->toBinPostCached;
   }
 
-  public function getToUuidFnString($column)
+  private function getToUuidFnString($column)
   {
     if (!$this->toUuidPreCached) {
       $this->cacheConversionFunctionStrings();
@@ -233,7 +233,7 @@ class MyUuid
   }
 
 
-  function getVersion() {
+  public function getVersion() {
     $pdo = $this->connection->getPdo();
     $result = $pdo->query('SELECT version()')->fetchColumn();
 
@@ -242,7 +242,7 @@ class MyUuid
     return $version[0];
   }
 
-  function getTrustFunctionCreators() {
+  public function getTrustFunctionCreatorsSetting() {
     $pdo = $this->connection->getPdo();
     $result = $pdo->query('SELECT @@log_bin_trust_function_creators')->fetchColumn();
 

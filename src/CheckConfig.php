@@ -51,8 +51,8 @@ class CheckConfig extends Command
     $this->info("\nMySQL Trigger Creation");
     $this->line("======================\n");
 
-    $canCreateTriggers = $myUuid->getTrustFunctionCreators();
-    $this->line('log_bin_trust_function_creators=' . ($canCreateTriggers ? '1' : '0') . "\n");
+    $canCreateTriggers = $myUuid->getTrustFunctionCreatorsSetting();
+    $this->line('log_bin_trust_function_creators=' . ($canCreateTriggers ? '1' : '0'));
     if ($canCreateTriggers) {
       $this->info('Triggers can be created!');
     } else {
