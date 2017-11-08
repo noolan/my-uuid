@@ -1,7 +1,7 @@
 # My UUID
 
 Simplifies using UUIDs in MySQL and Laravel
-
+https://noolan.github.io/my-uuid/
 
 ## Install
 
@@ -14,7 +14,7 @@ composer require noolan/my-uuid
 ### Copy Config File
 
 ```bash
-php artisan vendor:publish --provider Noolan\MyUuid\MyUuidServiceProvider
+php artisan vendor:publish --provider Noolan\\MyUuid\\MyUuidServiceProvider
 ```
 The settings for this package can now be edited in `config/myuuid.php`.
 
