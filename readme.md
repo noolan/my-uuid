@@ -1,6 +1,7 @@
 # My UUID
 
 Simplifies using UUIDs in MySQL and Laravel
+
 https://noolan.github.io/my-uuid/
 
 ## Install
