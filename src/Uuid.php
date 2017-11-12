@@ -12,8 +12,8 @@ class Uuid
   private static $toUuid = "BIN_TO_UUID(?, 1)";
   private static $toUuidLegacy = "INSERT(INSERT(INSERT(INSERT(HEX(?), 20, 0, '-'), 16, 0, '-'), 12, 0, '-'), 8, 0, '-')";
 
-  protected $legacy;
-  protected $connection;
+  public $legacy;
+  public $connection;
 
   public $toBinPreCached;
   public $toBinPostCached;
