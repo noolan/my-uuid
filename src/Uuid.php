@@ -42,7 +42,8 @@ class Uuid
     return new UuidSchema($this, $table);
   }
 
-  public function getVersion() {
+  public function getVersion()
+  {
     $pdo = $this->connection->getPdo();
     $result = $pdo->query('SELECT version()')->fetchColumn();
 
@@ -51,7 +52,8 @@ class Uuid
     return $version[0];
   }
 
-  public function getTrustFunctionCreatorsSetting() {
+  public function getTrustFunctionCreatorsSetting()
+  {
     $pdo = $this->connection->getPdo();
     $result = $pdo->query('SELECT @@log_bin_trust_function_creators')->fetchColumn();
 
@@ -59,7 +61,7 @@ class Uuid
   }
 
 
-  private function cacheConversionFunctionStrings()
+  public function cacheConversionFunctionStrings()
   {
     $legacy = ($this->legacy ? 'Legacy' : '');
 
@@ -74,7 +76,7 @@ class Uuid
     $this->toUuidPostCached = $toUuidFn[1];
   }
 
-  private function getToBinFnString($column)
+  public function getToBinFnString($column)
   {
     if (!$this->toBinPreCached) {
       $this->cacheConversionFunctionStrings();
@@ -82,7 +84,7 @@ class Uuid
     return $this->toBinPreCached . $column . $this->toBinPostCached;
   }
 
-  private function getToUuidFnString($column)
+  public function getToUuidFnString($column)
   {
     if (!$this->toUuidPreCached) {
       $this->cacheConversionFunctionStrings();
