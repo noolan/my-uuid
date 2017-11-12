@@ -35,7 +35,5 @@ class Service extends ServiceProvider
     $this->app->singleton('MyUuid', function ($app) {
       return new Uuid();
     });
-
-    $this->app->singleton();
   }
 }
