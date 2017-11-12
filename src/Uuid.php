@@ -15,10 +15,10 @@ class Uuid
   protected $legacy;
   protected $connection;
 
-  private $toBinPreCached;
-  private $toBinPostCached;
-  private $toUuidPreCached;
-  private $toUuidPostCached;
+  protected $toBinPreCached;
+  protected $toBinPostCached;
+  protected $toUuidPreCached;
+  protected $toUuidPostCached;
 
   private $uuidFactory;
 
