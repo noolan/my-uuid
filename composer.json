@@ -19,10 +19,10 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Noolan\\MyUuid\\MyUuidServiceProvider"
+        "Noolan\\MyUuid\\Service"
       ],
       "aliases": {
-        "MyUuid": "Noolan\\MyUuid\\MyUuidFacade"
+        "MyUuid": "Noolan\\MyUuid\\MyUuid"
       }
     }
   }

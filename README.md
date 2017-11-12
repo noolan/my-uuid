@@ -15,7 +15,7 @@ composer require noolan/my-uuid
 ### Copy Config File
 
 ```bash
-php artisan vendor:publish --provider Noolan\\MyUuid\\MyUuidServiceProvider
+php artisan vendor:publish --provider Noolan\\MyUuid\\Service
 ```
 The settings for this package can now be edited in `config/myuuid.php`.
 
@@ -32,10 +32,10 @@ The settings for this package can now be edited in `config/myuuid.php`.
 
 There are two Artisan commands included with this package that help with configuration; `version` and `check`.
 
-|Command           |Arguments                         |Description  |Example  |
-|------------------|----------------------------------|-------------|---------|
-|`myuuid:version`  |connection - String (_optional_)  |Outputs the MySQL version of the named connection or the default connection if no name is supplied.  |`php artisan myuuid:version`, `php artisan myuuid:version alt_mysql`  |
-|`myuuid:check`    |(none)                            |Checks the current configuration against the database to see if there are issues.|`php artisan myuuid:check`  |
+|Command           |Arguments  |Description                                                                        |Example                       |
+|------------------|-----------|-----------------------------------------------------------------------------------|------------------------------|
+|`myuuid:version`  |(none)     |Outputs the MySQL version of the configured connection.                            |`php artisan myuuid:version`  |
+|`myuuid:check`    |(none)     |Checks the current configuration against the database to see if there are issues.  |`php artisan myuuid:check`    |
 
 
 
