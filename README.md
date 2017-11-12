@@ -43,13 +43,13 @@ There are two Artisan commands included with this package that help with configu
 
 ### Instantiation
 
-All the functionality is accessed through the `MyUuid` class.
+All the functionality is accessed through the `MyUuid` facade.
 ```php
-use Noolan\MyUuid\MyUuid;
+use MyUuid;
 /* ... */
 public function doAThing()
 {
-    $myUuid = MyUuid::on('examples');
+    $myUuid = MyUuid::alter('examples');
     /* ... */
 }
 ```
@@ -103,95 +103,14 @@ $myUuid->dropTrigger('id')->run();
 
 ### API
 
-#### Basic Methods
+#### Uuid Methods
 <dl>
-  <dt><i>static::</i><b>on</b></dt>
+  <dt><b>alter</b></dt>
   <dd>
-    <b>(</b><i>String</i> $table, [<i>String</i>|<i>MySqlConnector</i> $connection]<b>)</b><br>
-    <u>returns:</u> new <i>MyUuid</i>
+    <b>(</b><i>String</i> $table<b>)</b><br>
+    <u>returns:</u> new <i>UuidSchema</i>
   </dd>
 
-  <dt><b>addColumn</b></dt>
-  <dd>
-    (<i>String</i> $name, [<i>String</i> $type, <i>Integer</i> $length, <i>String</i> $virtualTarget])<br>
-    <u>returns:</u> <i>MyUuid</i> self
-  </dd>
-
-  <dt><b>addIndex</b></dt>
-  <dd>
-    ([<i>String</i> $type, <i>String</i> $column, <i>String</i> $cname, <i>Integer</i> $length])<br>
-    <u>returns:</u> <i>MyUuid</i> self
-  </dd>
-
-  <dt><b>addTrigger</b></dt>
-  <dd>
-    ([<i>String</i> $column])<br>
-    <u>returns:</u> <i>MyUuid</i> self
-  </dd>
-
-  <dt><b>dropTrigger</b></dt>
-  <dd>
-    (<i>String</i> $column)
-    <u>returns:</u> <i>MyUuid</i> self
-  </dd>
-
-  <dt><b>run</b></dt>
-  <dd>
-    ()
-    <u>returns:</u> null
-  </dd>
-</dl>
-
-#### Convenience Methods
-
-<dl>
-
-  <dt><b>addPrimaryUuid</b></dt>
-  <dd>
-    (<i>String</i> $name)<br>
-    <u>returns:</u> <i>MyUuid</i> self
-  </dd>
-
-  <dt><b>addAutoUuid</b></dt>
-  <dd>
-    (<i>String</i> $name)<br>
-    <u>returns:</u> <i>MyUuid</i> self
-  </dd>
-
-  <dt><b>addFriendlyUuid</b></dt>
-  <dd>
-    (<i>String</i> $name, <i>String</i> $target)<br>
-    <u>returns:</u> <i>MyUuid</i> self
-  </dd>
-
-  <dt><b>withFriendly</b></dt>
-  <dd>
-    (<i>String</i> $target)<br>
-    <u>returns:</u> <i>MyUuid</i> self
-  </dd>
-
-  <dt><b>addIndexedUuid</b></dt>
-  <dd>
-    (<i>String</i> $name)<br>
-    <u>returns:</u> <i>MyUuid</i> self
-  </dd>
-
-  <dt><b>index</b></dt>
-  <dd>
-    ([<i>String</i> $type])<br>
-    <u>returns:</u> <i>MyUuid</i> self
-  </dd>
-
-  <dt><b>addForeignUuid</b></dt>
-  <dd>
-    (<i>String</i> $name)<br>
-    <u>returns:</u> <i>MyUuid</i> self
-  </dd>
-</dl>
-
-#### Config Helper Methods
-
-<dl>
   <dt><b>getVersion</b></dt>
   <dd>
     ()<br>
@@ -202,6 +121,87 @@ $myUuid->dropTrigger('id')->run();
   <dd>
     ()<br>
     <u>returns:</u> <i>Boolean</i> on
+  </dd>
+</dl>
+
+#### UuidSchema Methods
+<dl>
+
+  <dt><b>addColumn</b></dt>
+  <dd>
+    (<i>String</i> $name, [<i>String</i> $type, <i>Integer</i> $length, <i>String</i> $virtualTarget])<br>
+    <u>returns:</u> <i>UuidSchema</i> self
+  </dd>
+
+  <dt><b>addIndex</b></dt>
+  <dd>
+    ([<i>String</i> $type, <i>String</i> $column, <i>String</i> $cname, <i>Integer</i> $length])<br>
+    <u>returns:</u> <i>UuidSchema</i> self
+  </dd>
+
+  <dt><b>addTrigger</b></dt>
+  <dd>
+    ([<i>String</i> $column])<br>
+    <u>returns:</u> <i>UuidSchema</i> self
+  </dd>
+
+  <dt><b>dropTrigger</b></dt>
+  <dd>
+    (<i>String</i> $column)
+    <u>returns:</u> <i>UuidSchema</i> self
+  </dd>
+
+  <dt><b>run</b></dt>
+  <dd>
+    ()
+    <u>returns:</u> null
+  </dd>
+</dl>
+
+#### UuidSchema Convenience Methods
+
+<dl>
+
+  <dt><b>addPrimaryUuid</b></dt>
+  <dd>
+    (<i>String</i> $name)<br>
+    <u>returns:</u> <i>UuidSchema</i> self
+  </dd>
+
+  <dt><b>addAutoUuid</b></dt>
+  <dd>
+    (<i>String</i> $name)<br>
+    <u>returns:</u> <i>UuidSchema</i> self
+  </dd>
+
+  <dt><b>addFriendlyUuid</b></dt>
+  <dd>
+    (<i>String</i> $name, <i>String</i> $target)<br>
+    <u>returns:</u> <i>UuidSchema</i> self
+  </dd>
+
+  <dt><b>withFriendly</b></dt>
+  <dd>
+    (<i>String</i> $target)<br>
+    <u>returns:</u> <i>UuidSchema</i> self
+  </dd>
+
+  <dt><b>addIndexedUuid</b></dt>
+  <dd>
+    (<i>String</i> $name)<br>
+    <u>returns:</u> <i>UuidSchema</i> self
+  </dd>
+
+  <dt><b>index</b></dt>
+  <dd>
+    ([<i>String</i> $type])<br>
+    <u>returns:</u> <i>UuidSchema</i> self
+  </dd>
+
+  <dt><b>addForeignUuid</b></dt>
+  <dd>
+    (<i>String</i> $name)<br>
+    <u>returns:</u> <i>UuidSchema</i> self
   </dd>
 </dl>
 
