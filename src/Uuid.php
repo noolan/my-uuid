@@ -116,7 +116,7 @@ class Uuid
   {
     $this->makeUuidFactory();
 
-    return $this->uuidFactory->fromBytes($uuid)->getString();
+    return $this->uuidFactory->fromBytes($bin)->getString();
   }
 
 }
