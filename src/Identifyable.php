@@ -4,6 +4,9 @@ namespace Noolan\MyUuid;
 
 trait Identifyable {
 
+  public $increments = false;
+  protected $keyType = 'string';
+
   // convert string UUID to ordered time byte representation
   public function __call($method, $parameters)
   {
@@ -13,5 +16,5 @@ trait Identifyable {
 
     return parent::__call($method, $parameters);
   }
-  
+
 }
