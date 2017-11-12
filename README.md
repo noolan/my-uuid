@@ -215,7 +215,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-use Noolan\MyUuid\MyUuid;
+use MyUuid;
 
 class CreateExamplesTable extends Migration
 {
@@ -235,7 +235,7 @@ class CreateExamplesTable extends Migration
       $table->longText('code');
     });
 
-    MyUuid::on('examples')
+    MyUuid::alter('examples')
       ->addPrimaryUuid('id')->withFriendly('uuid')
       ->addForeignUuid('category_id')
       ->run();
@@ -248,7 +248,7 @@ class CreateExamplesTable extends Migration
   */
   public function down()
   {
-    MyUuid::on('examples')->dropTrigger('id')->run();
+    MyUuid::alter('examples')->dropTrigger('id')->run();
     Schema::dropIfExists('characters');
   }
 }
