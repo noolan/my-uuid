@@ -16,5 +16,10 @@ trait Identifyable {
 
     return parent::__call($method, $parameters);
   }
+  
+  public function getIdAttribute($id)
+  {
+    return MyUuid::binToUuid($id);
+  }
 
 }
